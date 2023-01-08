@@ -10,24 +10,47 @@ on:
   workflow_dispatch:
 
 jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Java version
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Rename app jar
+        run: mv '${{ github.workspace }}/target/*.jar' '${{ github.workspace }}/app.jar'
+
+      - name: Download Application Insights agent
+        run: Invoke-WebRequest -Uri https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.7/applicationinsights-agent-3.4.7.jar -OutFile applicationinsights-agent-3.4.7.jar -PassThru
+
+      - name: Zip files
+        run: Compress-Archive -Path '${{ github.workspace }}/app.jar','${{ github.workspace }}/applicationinsights-agent-3.4.7.jar' -DestinationPath '${{ github.workspace }}/pack.zip'
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: java-app-zip
+          path: '${{ github.workspace }}/pack.zip'
+
   deploy:
     runs-on: windows-latest
+    needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download Application Insights agent
-        run: Invoke-WebRequest -Uri https://github.com/tomo-msft/TmpRepo/releases/download/v1/demo-0.0.1-SNAPSHOT.jar -OutFile demo-0.0.1-SNAPSHOT.jar -PassThru
-
-      - name: Rename app jar
-        run: mv demo-0.0.1-SNAPSHOT.jar app.jar
-
-      - name: Download Application Insights agent
-        run: Invoke-WebRequest -Uri https://github.com/tomo-msft/TmpRepo/releases/download/v1/applicationinsights-agent-3.4.7.jar -OutFile applicationinsights-agent-3.4.7.jar -PassThru
-
-      - name: Zip files
-        run: Compress-Archive -Path app.jar,applicationinsights-agent-3.4.7.jar -DestinationPath pack.zip
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: java-app-zip
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
