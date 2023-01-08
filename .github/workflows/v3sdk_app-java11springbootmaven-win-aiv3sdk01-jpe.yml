@@ -30,6 +30,15 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
 
+      - name: Download Application Insights agent
+        run: wget https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.7/applicationinsights-agent-3.4.7.jar
+
+      - name: Upload agent for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: agent
+          path: '${{ github.workspace }}/applicationinsights-agent-3.4.7.jar'
+
   deploy:
     runs-on: windows-latest
     needs: build
