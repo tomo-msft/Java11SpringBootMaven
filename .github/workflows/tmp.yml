@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Download Application Insights agent
-        run: Invoke-WebRequest -Uri https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.7/applicationinsights-agent-3.4.7.jar -OutFile applicationinsights-agent-3.4.7.jar -PassThru
+        run: Invoke-WebRequest -Uri https://github.com/tomo-msft/TmpRepo/releases/download/v1/app.zip -PassThru
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -27,4 +27,4 @@ jobs:
           app-name: 'APP-Java11SpringBootMaven-Win-AiV3Sdk01-JPE'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_648433FB3B9140C3B8EB694194AAD98B }}
-          package: '*.jar'
+          package: 'app.zip'
