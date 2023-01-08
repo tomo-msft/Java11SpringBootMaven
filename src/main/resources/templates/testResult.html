@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Test result</title>
+</head>
+<body>
+    <h1>Application Insights Java Test Result</h1>
+    Status: [[${status}]]<br>
+    Date: [[${date}]]<br>
+    Description: <br>
+    <ul>
+        <li th:each="elem : ${description}">[[${elem.key}]] : [[${elem.value}]]</li>
+    </ul>
+</body>
+</html>
