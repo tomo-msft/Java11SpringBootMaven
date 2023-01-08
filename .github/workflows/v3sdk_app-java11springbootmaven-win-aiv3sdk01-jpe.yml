@@ -31,7 +31,7 @@ jobs:
           path: '${{ github.workspace }}/target/*.jar'
 
       - name: Download Application Insights agent
-        run: wget https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.7/applicationinsights-agent-3.4.7.jar
+        run: Invoke-WebRequest -Uri https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.7/applicationinsights-agent-3.4.7.jar -OutFile applicationinsights-agent-3.4.7.jar -PassThru
 
       - name: Upload agent for deployment job
         uses: actions/upload-artifact@v2
