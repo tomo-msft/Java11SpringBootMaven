@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Download Application Insights agent
-        run: Invoke-WebRequest -Uri https://github.com/tomo-msft/TmpRepo/releases/download/v1/app.zip -PassThru
+        run: Invoke-WebRequest -Uri https://github.com/tomo-msft/TmpRepo/releases/download/v1/app.zip -OutFile app.zip -PassThru
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
