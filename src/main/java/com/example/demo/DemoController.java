@@ -26,7 +26,7 @@ import com.microsoft.applicationinsights.telemetry.SeverityLevel;
 public class DemoController {
 	static final TelemetryClient telemetryClient = new TelemetryClient();
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
-	private static final String AppName = "Java11SpringBootMaven-AiAuto01";
+	private static final String AppName = "Java11SpringBootMaven-AiV3Sdk01";
 
 	private String createLog(String message, String testName, Date now) {
 		return String.format(message + " TestName:" + testName + " AppName: " + AppName + " Date: " + now);
