@@ -1,8 +1,8 @@
 name: 'Delete old artifacts'
 on:
   schedule:
-    - cron: '0 1 * * *' # every day at 1 am
-
+    - cron: '15 * * * *' # every **:15
+      
 jobs:
   delete-artifacts:
     runs-on: ubuntu-latest
