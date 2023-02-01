@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>  
+<Configuration packages="com.microsoft.applicationinsights.log4j.v2">
+    <Properties>
+        <Property name="format1">T6 %d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-6p %c{10} %m%n</Property>
+    </Properties>
+
+    <Appenders>
+        <ApplicationInsightsAppender name="aiAppender" instrumentationKey="0e6c2b1b-95ab-420e-ab59-62d65d10ba21" />
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout>
+				<pattern>${format1}</pattern>
+			</PatternLayout>
+		</Console>
+		<RollingFile name="File" fileName="/home/LogFiles/apptest.log" filePattern="/home/LogFiles/apptest-%d{yyyy-MM-dd-hh-mm-ss}_%i.log" >
+			<PatternLayout>
+				<pattern>${format1}</pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy/>
+			</Policies>
+			<DefaultRolloverStrategy max="20"/>
+		</RollingFile>  
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="aiAppender"/>
+			<AppenderRef ref="File" />
+        </Root>
+    </Loggers>
+</Configuration>
