@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,9 @@ import com.microsoft.applicationinsights.telemetry.SeverityLevel;
 @Controller
 public class DemoController {
 	static final TelemetryClient telemetryClient = new TelemetryClient();
-    private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
+    private static final Logger logger = LogManager.getLogger(DemoController.class);
+	private static final Logger logger2 = LogManager.getLogger("MyTest1");
+
 	private static final String AppName = "Java11SpringBootMaven-AiV3Sdk01";
 
 	private String createLog(String message, String testName, Date now) {
@@ -50,6 +52,9 @@ public class DemoController {
 		Date now = new Date();
 
 		// do test
+		logger.warn(createLog("Warn log test - Class logger", name, now));
+		logger2.warn(createLog("Warn log test - MyTest1 logger", name, now));
+
 		logger.debug(createLog("Debug log test", name, now));
 		logger.info(createLog("Info log test", name, now));
 		logger.warn(createLog("Warn log test", name, now));

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+  <Properties>
+    <Property name="format1">Console1 %d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-6p %c{10} %m%n</Property>
+    <Property name="format2">Console2 %d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-6p %c{10} %m%n</Property>
+  </Properties>
+
+  <Appenders>
+    <Console name="Console1" target="SYSTEM_OUT">
+      <PatternLayout>
+        <pattern>${format1}</pattern>
+      </PatternLayout>
+    </Console>
+
+    <Console name="Console2" target="SYSTEM_OUT">
+      <PatternLayout>
+        <pattern>${format2}</pattern>
+      </PatternLayout>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <Logger name="com.example.demo" level="info" additivity="false" >
+      <AppenderRef ref="Console1" />
+    </Logger>
+
+    <Root level="info">
+      <AppenderRef ref="Console2" />
+    </Root>
+  </Loggers>
+</Configuration>
