@@ -62,6 +62,14 @@
 mvn clean spring-boot:run 
 ```
 
+もしくは、Jarを生成して直接Javaから実行する。
+
+``` bash
+mvn package
+java -jar target\spring-boot-0.0.1-SNAPSHOT.jar 
+```
+
+
 もしくは、生成された War を Tomcat にデプロイする。
 
 ※ mvnのspring-bootプラグインが対応しているコマンドを確認する場合は、```mvn spring-boot:help``` を実行する。
