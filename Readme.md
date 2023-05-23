@@ -2,9 +2,9 @@
 ## Target
 * Java 11 
 * Spring Boot
+  * logger (Sproing boot のデフォルトである SLF4J + Logback を利用)
 * Maven
-* Application Insights Agent
-
+* Application Insights Agent (エージェントの Jar ファイルを実行時にアタッチ)
 
 ## 1. プロジェクトの作り方
 ***WSL 上の Ubuntu で開発する場合***
@@ -38,12 +38,12 @@ java -jar target/demo-0.0.1-SNAPSHOT.jar
 ※ mvnのspring-bootプラグインが対応しているコマンドを確認する場合は、```mvn spring-boot:help``` を実行する。
 
 ### 2-2. VSCodeからの実行
-* VSCodeに拡張機能をひととおり入れる
+* VSCodeに拡張機能を入れる
   * Java Extension Pack
   * Azure、Maven for Java
   * Spring Boot Extension pack
 * VSCodeのメニューの [Run] - [Start Debugging] を実行
-* なんかいい感じにVSCodeがサーバを立ち上げてくれる
+* サーバーが起動され、アプリケーションへアクセスできる状態になります
 
 ## 3. Application Insights の接続文字列の設定
 ### 3-1. 環境変数で設定する
