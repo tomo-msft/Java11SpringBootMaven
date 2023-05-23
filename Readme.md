@@ -2,7 +2,7 @@
 ## Target
 * Java 11 
 * Spring Boot
-  * logger (Sproing boot のデフォルトである SLF4J + Logback を利用)
+  * logger (Log4j を利用)
 * Maven
 * Application Insights Agent (エージェントの Jar ファイルを実行時にアタッチ)
 

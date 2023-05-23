@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DemoController {
-    private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
-	private static final String AppName = "Java11SpringBootMaven-AiAuto01";
+    private static final Logger logger = LogManager.getLogger(DemoController.class);
+	private static final java.util.logging.Logger JavaLogger = java.util.logging.Logger.getLogger(DemoController.class.getName());
+
+	private static final String AppName = "Java11SpringBootMaven-AiAuto01-Log4j2";
 
 	private String createLog(String message, String testName, Date now) {
 		return String.format(message + " TestName:" + testName + " AppName: " + AppName + " Date: " + now);
@@ -44,10 +46,17 @@ public class DemoController {
 		Date now = new Date();
 
 		// do test
-		logger.debug(createLog("Debug log test", name, now));
-		logger.info(createLog("Info log test", name, now));
-		logger.warn(createLog("Warn log test", name, now));
-		logger.error(createLog("Error log test", name, now));
+		logger.debug(createLog("Log4j2 Debug log test", name, now));
+		logger.info(createLog("Log4j2 Info log test", name, now));
+		logger.warn(createLog("Log4j2 Warn log test", name, now));
+		logger.error(createLog("Log4j2 Error log test", name, now));
+
+		// java.util.logging test
+		JavaLogger.setLevel(java.util.logging.Level.INFO);
+		JavaLogger.log(java.util.logging.Level.FINE, createLog("Logging FINE log test", name, now));
+		JavaLogger.log(java.util.logging.Level.INFO, createLog("Logging INFO log test", name, now));
+		JavaLogger.log(java.util.logging.Level.WARNING, createLog("Logging WARN log test", name, now));
+		JavaLogger.log(java.util.logging.Level.SEVERE, createLog("Logging SEVERE log test", name, now));
 
 		// set result
 		setResult(model, name, now);
