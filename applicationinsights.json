@@ -1,0 +1,30 @@
+{
+    "role": {
+        "name": "Java_Spring_AppInsightsv3_Log4j2"
+    },
+    "sampling": {
+        "percentage": 100
+    },
+    "instrumentation": {
+        "logging": {
+            "level": "ALL"
+        }
+    },
+    "customDimensions": {
+        "mytag": "my value",
+        "anothertag": "my value2"
+    },
+    "preview": {
+        "captureLogbackMarker":  true,
+        "captureLog4jMarker":  true
+    },
+    "selfDiagnostics": {
+        "destination": "file+console",
+        "level": "INFO",
+        "file": {
+            "path": "applicationinsights.log",
+            "maxSizeMb": 20,
+            "maxHistory": 3
+        }
+    }
+}
