@@ -114,7 +114,3 @@ https://docs.microsoft.com/ja-jp/learn/modules/create-publish-webapp-app-service
 ### 5-2. Github 経由で発行する
 Github Action を用いることで、Github のリポジトリにコードが Push されたら、自動的に App Service にデプロイできる。
 具体的な手順は以下を参照
-
-https://dev.azure.com/ASIMKnowledgeBase/ASIM%20Knowledge%20Base/_wiki/wikis/ASIM-Knowledge-Base.wiki/2981/%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92-App-Service-%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95-(Github-Action-%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E8%87%AA%E5%8B%95%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)
-
-
