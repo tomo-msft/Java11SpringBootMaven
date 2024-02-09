@@ -1,0 +1,38 @@
+{
+    "role": {
+        "name": "Java11SpringBootMaven Linux AiSdk JPE"
+    },
+    "sampling": {
+        "percentage": 100
+    },
+    "jmxMetrics": [],
+    "customDimensions": {},
+    "instrumentation": {
+        "logging": {
+            "level": "ALL"
+        },
+        "micrometer": {
+            "enabled": true
+        }
+    },
+    "proxy": {},
+    "preview": {
+        "profiler": {
+            "enabled": true,
+            "cpuTriggeredSettings": "profile-without-env-data",
+            "memoryTriggeredSettings": "profile-without-env-data",
+            "manualTriggeredSettings": "profile-without-env-data",
+            "enableRequestTriggering": true,
+            "periodicRecordingDurationSeconds": 180
+        }
+    },
+    "selfDiagnostics": {
+        "destination": "file+console",
+        "level": "INFO",
+        "file": {
+            "path": "applicationinsights.log",
+            "maxSizeMb": 5,
+            "maxHistory": 1
+        }
+    }
+}
