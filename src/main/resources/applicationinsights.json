@@ -23,7 +23,7 @@
             "memoryTriggeredSettings": "profile-without-env-data",
             "manualTriggeredSettings": "profile-without-env-data",
             "enableRequestTriggering": true,
-            "periodicRecordingDurationSeconds": 180
+            "periodicRecordingDurationSeconds": 60
         }
     },
     "selfDiagnostics": {
