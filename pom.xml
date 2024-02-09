@@ -36,22 +36,6 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-
-    <dependency>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>applicationinsights-web</artifactId>
-        <version>[3.4,)</version>
-    </dependency>
-    <dependency>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>applicationinsights-runtime-attach</artifactId>
-        <version>[3.4,)</version>
-    </dependency>
-    <dependency>
-      <groupId>com.microsoft.azure</groupId>
-      <artifactId>applicationinsights-core</artifactId>
-      <version>[3.4,)</version>
-    </dependency>    
   </dependencies>
 
   <build>

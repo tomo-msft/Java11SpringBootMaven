@@ -73,10 +73,10 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/java-standalone-config
 
 ``` Bash
 # エージェントのダウンロード
-wget https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.7/applicationinsights-agent-3.4.7.jar
+wget https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.19/applicationinsights-agent-3.4.19.jar
 
 # アプリの実行
-java -javaagent:applicationinsights-agent-3.4.7.jar -jar target/demo-0.0.1-SNAPSHOT.jar
+java -javaagent:applicationinsights-agent-3.4.19.jar -jar target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 ### 4-3. コードの中で Spring Boot 用の Application Insights を有効化する
