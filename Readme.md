@@ -81,15 +81,15 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/java-standalone-config
 wget https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.19/applicationinsights-agent-3.4.19.jar
 ```
 
-起動時に以下のコマンドで Application Insights のエージェントをアタッチする。
+起動時は以下のコマンドを実行し、Application Insights のエージェントをアタッチする。
 
 ``` Bash
-# エージェントのダウンロード
-wget https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.7/applicationinsights-agent-3.4.7.jar
-
 # アプリの実行
-java -javaagent:applicationinsights-agent-3.4.7.jar -jar target/demo-0.0.1-SNAPSHOT.jar
+java -javaagent:/dev/java/app01/applicationinsights-agent-3.4.19.jar -jar target/demo-0.0.1-SNAPSHOT.jar
 ```
+
+-javaagent で指定する ```/dev/java/app01/``` の部分は、各自の環境に合わせて置き換える。絶対パスでなく、java コマンド実行時のパスからの相対パスも利用できる。
+
 
 ### 4-3. コードの中で Spring Boot 用の Application Insights を有効化する
 ※ この実装は、v3sdk ブランチに入っています。
