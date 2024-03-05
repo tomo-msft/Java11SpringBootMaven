@@ -68,20 +68,33 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/java-standalone-config
 
 ## 4. Application Insights の有効化
 ### 4-1. App Service での自動インストルメンテーション
+アプリを App Service にデプロイしている場合は、App Service 環境にあらかじめ組み込まれた Application Insights を利用できる。
 この場合はコード変更は不要。App Service で Application Insights を有効化すると、App Service のランタイム側で Application Insights が自動的にアタッチされる。
+ただし、ローカルでアプリ開発する段階では自動インストルメンテーションは使えないので、後述の JAR を VM にアタッチする方式を使う。
 
 ### 4-2. エージェントの JAR を Java VM にアタッチする
-起動時に以下のコマンドで Application Insights のエージェントをアタッチする。
+※ この実装は、master ブランチに入っています。
 
+事前に Application Insights のエージェントをダウンロードして、任意のパスに置いておく。
 ``` Bash
 # エージェントのダウンロード 
 wget https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.4.19/applicationinsights-agent-3.4.19.jar
-
-# アプリの実行
-java -javaagent:applicationinsights-agent-3.4.19.jar -jar target/demo-0.0.1-SNAPSHOT.jar
 ```
 
+起動時は以下のコマンドを実行し、Application Insights のエージェントをアタッチする。
+
+``` Bash
+# アプリの実行
+java -javaagent:/dev/java/app01/applicationinsights-agent-3.4.19.jar -jar target/demo-0.0.1-SNAPSHOT.jar
+```
+
+-javaagent で指定する ```/dev/java/app01/``` の部分は、各自の環境に合わせて置き換える。絶対パスでなく、java コマンド実行時のパスからの相対パスも利用できる。
+
+
 ### 4-3. コードの中で Spring Boot 用の Application Insights を有効化する
+※ この実装は、v3sdk ブランチに入っています。
+
+pom.xml に Spring Boot 用の Application Insights を入れる方法。
 以下の方法で有効化する。
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/java-spring-boot#enabling-programmatically
 
@@ -104,10 +117,10 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/java-spring-boot#enabl
       }
     }
     ```
+このアプリを App Service にデプロイする場合は、App Service のポータルで設定する自動インストルメンテーションは無効化しておく。
 
 
 ## 5. Azureへの発行
-
 ### 5-1. VSCode で発行する
 以下のページを参照し、VSCode の拡張機能を用いてデプロイする
 https://docs.microsoft.com/ja-jp/learn/modules/create-publish-webapp-app-service-vs-code/4-publish-app-azure-app-service-vs-code
@@ -115,4 +128,4 @@ https://docs.microsoft.com/ja-jp/learn/modules/create-publish-webapp-app-service
 
 ### 5-2. Github 経由で発行する
 Github Action を用いることで、Github のリポジトリにコードが Push されたら、自動的に App Service にデプロイできる。
-
+App Service のデプロイ センターで、連携する Github リポジトリの情報を入力し、リポジトリにコードをPushすると、自動的に App Service にデプロイされる。
